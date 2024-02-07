@@ -26,6 +26,7 @@ header, footer {{
 
 #MainMenu {{
     visibility: visible !important;
+    color: #F44D00;
 }}
 
 [data-testid="stAppViewContainer"] > .main {{
