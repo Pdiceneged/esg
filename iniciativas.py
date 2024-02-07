@@ -88,24 +88,21 @@ sinonimos = {
     "Cooperação internacional, parcerias público privada, desenvolvimento sustentável, engajamento global, financiamento para o desenvolvimento, compartilhamento de conhecimento, colaboração entre setores, inovação social, tecnologias para o desenvolvimento, capacitação de comunidades locais, transferência de tecnologia, desenvolvimento de capacidades institucionais, mobilização de recursos, desenvolvimento de parcerias multissetoriais, advocacia para os ODS, promoção do voluntariado, cooperação Sul-Sul, monitoramento e avaliação conjunta, participação da sociedade civil, cooperação triangular (países desenvolvidos, em desenvolvimento e instituições internacionais).": "Parcerias e meios de implementação",
 
 }
-with open('secrets.toml', 'r') as f:
-    config = toml.load(f)
-
 gc_credentials = {
-    "type": config['google_bigquery']['type'],
-    "project_id": config['google_bigquery']['project_id'],
-    "private_key_id": config['google_bigquery']['private_key_id'],
-    "private_key": config['google_bigquery']['private_key'],
-    "client_email": config['google_bigquery']['client_email'],
-    "client_id": config['google_bigquery']['client_id'],
-    "auth_uri": config['google_bigquery']['auth_uri'],
-    "token_uri": config['google_bigquery']['token_uri'],
-    "auth_provider_x509_cert_url": config['google_bigquery']['auth_provider_x509_cert_url'],
-    "client_x509_cert_url": config['google_bigquery']['client_x509_cert_url']
+    "type": st.secrets['google_bigquery']['type'],
+    "project_id": st.secrets['google_bigquery']['project_id'],
+    "private_key_id": st.secrets['google_bigquery']['private_key_id'],
+    "private_key": st.secrets['google_bigquery']['private_key'],
+    "client_email": st.secrets['google_bigquery']['client_email'],
+    "client_id": st.secrets['google_bigquery']['client_id'],
+    "auth_uri": st.secrets['google_bigquery']['auth_uri'],
+    "token_uri": st.secrets['google_bigquery']['token_uri'],
+    "auth_provider_x509_cert_url": st.secrets['google_bigquery']['auth_provider_x509_cert_url'],
+    "client_x509_cert_url": st.secrets['google_bigquery']['client_x509_cert_url']
 }
 
 gc = gspread.service_account_from_dict(gc_credentials)
-planilha_url = config['google_sheets']['planilha_url']
+planilha_url = st.secrets['google_sheets']['planilha_url']
 dados = gc.open_by_url(planilha_url).worksheet('Respostas')
 colunas = dados.get_all_values()
 colunas_selecionadas = ['Qual o nome da Iniciativa / Projeto / Programa / Ação', 'Descrição da iniciativa', 'Objetivo', '''ODS's atendidas''', 'Mensuração de Impacto / Indicadores', 'Qual o estado atendido pela a iniciativa?', 'Mês e ano da iniciativa']
