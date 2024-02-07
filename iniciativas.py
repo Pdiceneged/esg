@@ -4,7 +4,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import streamlit as st
 import base64
-import toml
 
 st.set_page_config(
     page_title="Iniciativas ESG",
@@ -21,9 +20,14 @@ img2 = get_img_as_base64("sidebaresg.png")
 
 page_bg_img = f"""
 <style>
-#MainMenu, footer, header {{
+header, footer {{
     visibility: hidden !important;
 }}
+
+#MainMenu {{
+    visibility: visible !important;
+}}
+
 [data-testid="stAppViewContainer"] > .main {{
     background-image: url("data:fundoesg4k/png;base64,{img}");
     background-size: cover; 
